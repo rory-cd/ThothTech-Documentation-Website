@@ -5,6 +5,19 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
+
+  server: {
+    host: true
+  },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 60
+      }
+    }
+  },
+
   integrations: [
     partytown({
       config: {
@@ -62,20 +75,20 @@ export default defineConfig({
         starlightLinksValidator({
           errorOnRelativeLinks: true,
         }),
-        
+
       ],
       customCss: ["./src/styles/custom.css"],
-      social: {
-        github: "https://github.com/thoth-tech",
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/thoth-tech' },
+      ],
       logo: {
         src: "./public/favicon.svg",
       },
-      components: {
-        // MarkdownContent: "starlight-blog/overrides/MarkdownContent.astro",
-        // Sidebar: "starlight-blog/overrides/Sidebar.astro",
-        // ThemeSelect: "starlight-blog/overrides/ThemeSelect.astro",
-      },
+      // components: {
+      //   MarkdownContent: "starlight-blog/overrides/MarkdownContent.astro",
+      //   Sidebar: "starlight-blog/overrides/Sidebar.astro",
+      //   ThemeSelect: "starlight-blog/overrides/ThemeSelect.astro",
+      // },
       sidebar: [
         {
           label: "Resources",
@@ -83,7 +96,7 @@ export default defineConfig({
           items: [
             {
               label: "Introduction",
-              link: "/resources/introduction"
+              link: "/resources/introduction/"
             },
             {
               label: "Thoth Tech Technology Stack",
@@ -102,6 +115,14 @@ export default defineConfig({
               label: "Quality Assurance",
               collapsed: true,
               autogenerate: { directory: "Resources/Quality Assurance" },
+            },
+            {
+              label: "Writing Style Guide",
+              link: "/resources/writing-style-guide"
+            },
+            {
+              label: "Documenting for Thoth Tech",
+              link: "/resources/documenting-for-thoth-tech"
             },
             {
               label: "Frequently Asked Questions (FAQ)",

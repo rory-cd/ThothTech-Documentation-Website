@@ -38,8 +38,8 @@ you begin_?
 - Document your purpose and requirements within your
   [Software Requirements Specification](#software-requirements-specification-document) document.
 - Plan your testing by defining your Test Strategy and Test Plan:
-  - Using your specifications, outline the expected behavior for different use case scenarios; these
-    will be tested in your [Test Plan](#making-a-test-plan).
+  - Using your specifications, outline the expected behaviour for different use case scenarios;
+    these will be tested in your [Test Plan](#making-a-test-plan).
   - Determine _how_ you will test your scenarios and describe this in your
     [Test Strategy](#test-strategy).
 
@@ -64,8 +64,8 @@ This describes a _persona + need + purpose_.
   role or job title; it includes understanding who they are, how they work, think, and feel.
 - **[wants to]** – Describes the user's _intent_ (what they want to achieve) rather than the feature
   itself. Avoid detailing implementation specifics here.
-- **[so that]** – Explains the motivation behind the user's desire and the overall benefit from achieving
-  it.
+- **[so that]** – Explains the motivation behind the user's desire and the overall benefit from
+  achieving it.
 
 User stories use non-technical language to provide context and an understanding of what needs to be
 built and why. They focus on user needs, are discrete, and manageable for team members in an Agile
@@ -158,7 +158,7 @@ project deliverables.
 
 ### Making a Test Plan
 
-For each product/feature, using the specifications, outline the expected behavior for different use
+For each product/feature, using the specifications, outline the expected behaviour for different use
 case scenarios. A collaborative approach ensures defining the right problem and solution. These
 scenarios will be detailed in a Test Plan, recording each scenario to be tested, the expected
 outcome, and the actual outcome of tests. A simple Markdown
@@ -197,7 +197,7 @@ requirements you need to meet and plan your tests accordingly.
 ### Writing a Failing Test Case
 
 Create a test case that will initially fail. This test case should cover the specific functionality
-you are adding or changing and reflect the expected behavior that the code needs to exhibit.
+you are adding or changing and reflect the expected behaviour that the code needs to exhibit.
 
 ### Writing Code to Pass Your Test
 

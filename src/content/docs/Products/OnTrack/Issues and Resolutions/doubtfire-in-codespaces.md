@@ -35,7 +35,6 @@ ensure it meets the needs of running Ontrack effectively.
 ## Tasks undertaken
 
 1. Creating a Codespace
-
    - Sign in to GitHub and navigate to the repository containing Ontrack. (Make sure you fork the
      repository first from thoth-tech/dotfire-deploy, thoth-tech/doubtfire-web and
      thoth-tech/doubtfire-api)
@@ -45,20 +44,17 @@ ensure it meets the needs of running Ontrack effectively.
    ![figure-1](/codespaces-8.png)
 
 2. Install Docker-in-Docker in Codespace
-
    - Confirm that Docker is installed and running in the Codespace by running the following command
      in the terminal: wihch docker
 
    ![figure-2](/codespaces-1.png)
 
 3. Configuring Codespace for Ontrack:
-
    - Codespaces use a configuration file called .devcontainer to define the development environment.
      Create a .devcontainer folder in the root of the Ontrack repository if it doesn’t exist.
      (Replace this folder with the existing .devcontainer folder in the repository)
 
 4. Running Ontrack in Codespace:
-
    - Codespaces will use the defined configuration to create a containerized environment. It will
      automatically install dependencies, clone the repository, and set up Ontrack based on the
      configuration provided.
@@ -75,7 +71,7 @@ The front-end seemed to run fine, but the back-end was not working as expected. 
 was not running, and the database was not connected. The following error was displayed in the
 terminal:
 
-```bash
+```shell
 ERROR: ActionDispatch::HostAuthorization::DefaultResponseApp Blocked host: <github codespace host name>
 ```
 
