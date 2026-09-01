@@ -16,14 +16,14 @@ tests, modify one or more of the files such as `test_animation.cpp`. Tests in `s
 on demonstrating the output of functions, and require a human to validate that output. They are
 written in standard C++ and can make use of SplashKit functions.
 
-`skunit_tests` is built with the .cpp files from `splashkit-core/coresdk/src/test/unit_tests/`.
-When it runs, all unit tests from all files in this folder are executed. Additional files can be
-added to this folder if necessary. If adding a new file, copy the structure from one of the existing
-unit test files. Unlike `sktest`, tests here need to be written as Catch2 test cases and
+`skunit_tests` is built with the .cpp files from `splashkit-core/coresdk/src/test/unit_tests/`. When
+it runs, all unit tests from all files in this folder are executed. Additional files can be added to
+this folder if necessary. If adding a new file, copy the structure from one of the existing unit
+test files. Unlike `sktest`, tests here need to be written as Catch2 test cases and
 `#include "catch.hpp"` must be present in a given file for it to be compiled into `skunit_tests`.
 These tests evaluate actual output against expected output and produce an error if a test fails. See
 the
-[unit testing guide](/products/splashkit/documentation/splashkit-expansion/02-unit-testing-guide)
+[unit testing guide](/products/splashkit/documentation/splashkit-expansion/02-writing-unit-tests)
 for a more in depth explanation of how unit tests are written.
 
 ## Building the test project
@@ -32,7 +32,36 @@ If a change is made to the code, the build process needs to be run. This applies
 were made to coresdk files (such as adding new functions to SplashKit or changing existing code) or
 new tests were added to sktest or skunit_tests.
 
-### From the command line
+### Install prerequisites
+
+<Tabs syncKey="platform">
+<TabItem label="Linux/WSL">
+
+Open a terminal and install prerequisites with these commands:
+
+```shell
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y \
+git build-essential cmake g++ libpng-dev libcurl4-openssl-dev libsdl2-dev \
+libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-net-dev libsdl2-ttf-dev \
+libmikmod-dev libbz2-dev libflac-dev libvorbis-dev libwebp-dev libfreetype6-dev
+```
+
+</TabItem>
+<TabItem label="Windows (MSYS)">
+
+Open the MINGW64 terminal and install prerequisites with these commands:
+
+```shell
+pacman -Syu
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gdb mingw-w64-x86_64-cmake mingw-w64-x86_64-make
+```
+
+</TabItem>
+</Tabs>
+
+### Build from the command line
 
 <Tabs syncKey="platform">
 <TabItem label="Linux/WSL">
@@ -64,7 +93,7 @@ cmake --build build/
 </TabItem>
 </Tabs>
 
-### In VS Code
+### Build in VS Code
 
 <Tabs syncKey="platform">
 <TabItem label="Linux/WSL">
