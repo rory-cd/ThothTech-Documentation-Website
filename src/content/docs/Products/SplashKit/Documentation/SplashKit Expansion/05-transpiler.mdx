@@ -31,10 +31,21 @@ The transpiler requires:
 - A C++ compiler
 - LLVM
 - Clang
-- A SplashKit source tree
+- nlohmann/json (For JSON debugging)
 
-LLVM and Clang must be installed in a way that allows CMake to locate their CMake configuration
-files.
+Install in WSL with:
+
+```bash
+sudo apt update
+sudo apt install \
+    build-essential \
+    cmake \
+    clang-18 \
+    llvm-18-dev \
+    libclang-18-dev \
+    nlohmann-json3-dev \
+    libedit-dev
+```
 
 ### Build
 
@@ -215,22 +226,50 @@ can then generate the appropriate equivalent in the target language.
 The C# translator module utilises xUnit as a testing tool. While xUnit has some similar structures
 to Catch2, the following translation decisions have been applied:
 
-#### Assumptions
-
-Certain assumptions have been made, based on common patterns used in the C++ unit tests.
-
-- Sections are always used (no assertions in the root `TEST_CASE`)
-
 #### Structure
 
 - Each C++ file translates to an xUnit class (Pascal case)  
   e.g. `unit_test_sound_effect.cpp` → `public class UnitTestSoundEffect`
 
-- A Catch2 `TEST_CASE` becomes an xUnit nested class (Pascal case)  
+- A Catch2 `TEST_CASE` translates to an xUnit nested class (Pascal case)  
   e.g. `TEST_CASE("my test case")` → `public class MyTestCase`
 
-- A Catch2 `SECTION` becomes an xUnit test method (Pascal case)  
+- A Catch2 `SECTION` translates to an xUnit test method (Pascal case)  
   e.g. `SECTION("my section")` → `public void MySection()`
+
+- Global statements are added to a `GeneratedGlobals` class, with each statement as a member. This
+  is to avoid errors with top level statements in C#.
+
+- When no `SECTION` is provided, or the section name is empty, the name of the `TEST_CASE` (plus an
+  index number) is used.  
+  e.g. `public void MyTestCaseName1()`
+
+- Nested `SECTION`s are flattened as per below, since xUnit doesn't support nested tests.
+
+Nested sections in Catch2:
+
+```cpp
+SECTION("Outer section")
+{
+    // Outer statement
+
+    SECTION("Inner section")
+    {
+        // Inner statement
+    }
+}
+```
+
+Converted in xUnit:
+
+```csharp
+[Fact]
+public void InnerSection()
+{
+    // Outer statement
+    // Inner statement
+}
+```
 
 #### Execution paths
 
